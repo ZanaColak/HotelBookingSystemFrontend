@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <style>
+    </style>
+</head>
+<body>
+
+<h2>Hotel Management System</h2>
+
+<h3>All Hotels</h3>
+<table id="allHotelsTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Hotel Name</th>
+        <th>Street</th>
+        <th>Number of Rooms</th>
+    </tr>
+    </thead>
+    <tbody id="allHotelsTableBody"></tbody>
+</table>
+
+<h3>Hotel Details by ID</h3>
+<form id="hotelDetailsForm">
+    <label for="hotelId">Enter Hotel ID:</label>
+    <input type="text" id="hotelId" name="hotelId" required>
+    <button type="button" onclick="viewHotelDetails()">View Details</button>
+</form>
+<div id="hotelDetails"></div>
+
+<h3>Create a New Hotel</h3>
+<form id="createHotelForm">
+    <label for="hotelName">Hotel Name:</label>
+    <input type="text" id="hotelName" name="hotelName" required>
+    <label for="street">Street:</label>
+    <input type="text" id="street" name="street" required>
+    <label for="numberOfRooms">Number of Rooms:</label>
+    <input type="number" id="numberOfRooms" name="numberOfRooms" required>
+    <button type="button" onclick="createHotel()">Create Hotel</button>
+</form>
+
+<h3>Update Hotel</h3>
+<form id="updateHotelForm">
+    <label for="updateHotelId">Enter Hotel ID:</label>
+    <input type="text" id="updateHotelId" name="updateHotelId" required>
+    <label for="updatedHotelName">Updated Hotel Name:</label>
+    <input type="text" id="updatedHotelName" name="updatedHotelName" required>
+    <label for="updatedStreet">Updated Street:</label>
+    <input type="text" id="updatedStreet" name="updatedStreet" required>
+    <label for="updatedNumberOfRooms">Updated Number of Rooms:</label>
+    <input type="number" id="updatedNumberOfRooms" name="updatedNumberOfRooms" required>
+    <button type="button" onclick="updateHotel()">Update Hotel</button>
+</form>
+
+<h3>Delete Hotel</h3>
+<form id="deleteHotelForm">
+    <label for="deleteHotelId">Enter Hotel ID:</label>
+    <input type="text" id="deleteHotelId" name="deleteHotelId" required>
+    <button type="button" onclick="deleteHotel()">Delete Hotel</button>
+</form>
+
+<script src="hotel.js"></script>
+</body>
+</html>

@@ -1,15 +1,17 @@
 const apiUrl = 'http://localhost:8080';
 
-async function fetchAllHotels() {
+async function fetchAllHotels(page = 0, size = 10) {
     const allHotelsTableBody = document.getElementById('allHotelsTableBody');
 
     try {
-        const response = await fetch(apiUrl + '/hotel');
+        const response = await fetch(`${apiUrl}/hotel?page=${page}&size=${size}`);
         const hotelData = await response.json();
+
+        console.log('Fetched hotel data:', hotelData);
 
         allHotelsTableBody.innerHTML = '';
 
-        hotelData.forEach((hotel) => {
+        hotelData.content.forEach((hotel) => {
             const row = document.createElement('tr');
 
             row.innerHTML += `<td>${hotel.id}</td>`;
@@ -22,6 +24,10 @@ async function fetchAllHotels() {
     } catch (error) {
         console.error('Error fetching all hotels:', error);
     }
+
+}
+function navigateToPage(page) {
+    fetchAllHotels(page);
 }
 
 async function viewHotelDetails() {

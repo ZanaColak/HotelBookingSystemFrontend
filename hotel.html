@@ -28,6 +28,7 @@
     <button onclick="navigateToPage(0)">Page 1</button>
     <button onclick="navigateToPage(1)">Page 2</button>
     <button onclick="navigateToPage(2)">Page 3</button>
+    <button onclick="navigateToPage(3)">Page 4</button>
 </div>
 
 <h3>Hotel Details by ID</h3>
@@ -48,6 +49,14 @@
     <input type="number" id="numberOfRooms" name="numberOfRooms" required>
     <button type="button" onclick="createHotel()">Create Hotel</button>
 </form>
+
+<h3>Create a New Room for a Hotel</h3>
+<form id="createRoomForm">
+    <label for="roomHotelId">Hotel ID:</label>
+    <input type="text" id="roomHotelId" name="roomHotelId" required>
+    <button type="button" onclick="createRoom()">Create Room</button>
+</form>
+
 
 <h3>Update Hotel</h3>
 <form id="updateHotelForm">

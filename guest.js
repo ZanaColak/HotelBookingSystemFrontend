@@ -8,22 +8,33 @@ async function createGuest() {
     const email = document.getElementById('email').value;
     const phoneNumber = document.getElementById('phoneNumber').value;
 
+    const requestBody = {
+        userName: userName,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+    };
+
     try {
-        const response = await fetch(apiUrl + '/guest/create', {
+        const response = await fetch(`${apiUrl}/guest/create`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userName, firstName, lastName, email, phoneNumber }),
+            body: JSON.stringify(requestBody),
         });
 
-        if (response.status === 201) {
+        if (response.ok) {
             console.log('Guest created successfully');
             createGuestForm.reset();
+            window.location.href = 'reservation.html';
         } else {
-            console.error('Error creating guest:', response.status);
+            const errorText = await response.text();
+            console.error(`Error creating guest: ${response.status} - ${errorText}`);
         }
     } catch (error) {
         console.error('Error creating guest:', error);
     }
+
 }

@@ -38,7 +38,6 @@ async function viewHotelDetails() {
         const response = await fetch(apiUrl + '/hotel/' + hotelId);
         const hotelDetails = await response.json();
 
-        // Display details in the UI
         hotelDetailsDiv.innerHTML = `<p>ID: ${hotelDetails[0].id}</p>
                                     <p>Hotel Name: ${hotelDetails[0].hotelName}</p>
                                     <p>Street: ${hotelDetails[0].street}</p>
@@ -122,5 +121,30 @@ async function deleteHotel() {
         console.error('Error deleting hotel:', error);
     }
 }
+async function createRoom() {
+    const createRoomForm = document.getElementById('createRoomForm');
+    const roomHotelId = document.getElementById('roomHotelId').value;
+
+    try {
+        const response = await fetch(`${apiUrl}/hotel/${roomHotelId}/rooms`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+        });
+
+        if (response.status === 201) {
+            console.log('Room created successfully');
+            createRoomForm.reset();
+        } else {
+            console.error('Error creating room:', response.status);
+        }
+    } catch (error) {
+        console.error('Error creating room:', error);
+    }
+}
+
+
 
 fetchAllHotels();

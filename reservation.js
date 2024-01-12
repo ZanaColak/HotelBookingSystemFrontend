@@ -8,21 +8,16 @@ async function createReservation() {
     const checkOutDate = document.getElementById('checkOutDate').value;
 
     const requestBody = {
-        guestName: guestName,
-        roomNumber: roomNumber,
-        checkInDate: checkInDate,
-        checkOutDate: checkOutDate,
+        guestName: guestName, roomNumber: roomNumber, checkInDate: checkInDate, checkOutDate: checkOutDate,
     };
 
     console.log('Request Payload:', JSON.stringify(requestBody));
 
     try {
         const response = await fetch(`${apiUrl}/reservation/create`, {
-            method: 'POST',
-            headers: {
+            method: 'POST', headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
+            }, body: JSON.stringify(requestBody),
         });
 
         if (response.ok) {

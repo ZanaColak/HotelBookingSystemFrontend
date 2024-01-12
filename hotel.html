@@ -29,6 +29,13 @@
     <button onclick="navigateToPage(1)">Page 2</button>
     <button onclick="navigateToPage(2)">Page 3</button>
     <button onclick="navigateToPage(3)">Page 4</button>
+    <button onclick="navigateToPage(4)">Page 5</button>
+    <button onclick="navigateToPage(5)">Page 6</button>
+    <button onclick="navigateToPage(6)">Page 7</button>
+    <button onclick="navigateToPage(7)">Page 8</button>
+    <button onclick="navigateToPage(8)">Page 9</button>
+    <button onclick="navigateToPage(9)">Page 10</button>
+    <button onclick="navigateToPage(10)">Page 11</button>
 </div>
 
 <h3>Hotel Details by ID</h3>
@@ -38,6 +45,16 @@
     <button type="button" onclick="viewHotelDetails()">View Details</button>
 </form>
 <div id="hotelDetails"></div>
+
+<section id="filterHotelsSection">
+    <h3>Filter Hotels by Classification Type</h3>
+    <form id="filterHotelsForm">
+        <label for="classificationType">Select Classification Type:</label>
+        <input type="text" id="classificationType" name="classificationType" required>
+        <button type="button" onclick="filterHotelsByType()">Filter Hotels</button>
+    </form>
+</section>
+
 
 <h3>Create a New Hotel</h3>
 <form id="createHotelForm">
@@ -50,12 +67,21 @@
     <button type="button" onclick="createHotel()">Create Hotel</button>
 </form>
 
-<h3>Create a New Room for a Hotel</h3>
+<h3>Create a Room</h3>
 <form id="createRoomForm">
-    <label for="roomHotelId">Hotel ID:</label>
-    <input type="text" id="roomHotelId" name="roomHotelId" required>
-    <button type="button" onclick="createRoom()">Create Room</button>
+    <label for="roomNumber">Room Number:</label>
+    <input type="number" id="roomNumber" name="roomNumber" required>
+
+    <label for="numberOfBeds">Number of Beds:</label>
+    <input type="number" id="numberOfBeds" name="numberOfBeds" required>
+
+    <label for="createRoomHotelSelect">Select Hotel:</label>
+    <select id="createRoomHotelSelect" name="createRoomHotelSelect" required>
+    </select>
+
+    <button type="submit" onclick="createRoom()">Create Room</button>
 </form>
+
 
 
 <h3>Update Hotel</h3>

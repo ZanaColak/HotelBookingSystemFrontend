@@ -26,6 +26,7 @@ async function fetchAllHotels(page = 0, size = 10) {
     }
 
 }
+
 function navigateToPage(page) {
     fetchAllHotels(page);
 }
@@ -48,6 +49,36 @@ async function viewHotelDetails() {
     }
 }
 
+async function filterHotelsByType(type) {
+    try {
+        const response = await fetch(`${apiUrl}/hotel/byType/${type}`);
+        if (response.ok) {
+            const hotels = await response.json();
+            displayHotels(hotels);
+        } else {
+            console.error('Error fetching hotels by type:', response.status);
+        }
+    } catch (error) {
+        console.error('Error in filterHotelsByType:', error);
+    }
+}
+
+function displayHotels(hotels) {
+    const allHotelsTableBody = document.getElementById('allHotelsTableBody');
+    allHotelsTableBody.innerHTML = '';
+
+    hotels.forEach(hotel => {
+        const row = document.createElement('tr');
+        row.innerHTML += `<td>${hotel.id}</td>`;
+        row.innerHTML += `<td>${hotel.hotelName}</td>`;
+        row.innerHTML += `<td>${hotel.street}</td>`;
+        row.innerHTML += `<td>${hotel.numberOfRooms}</td>`;
+
+        allHotelsTableBody.appendChild(row);
+    });
+}
+
+
 async function createHotel() {
     const createHotelForm = document.getElementById('createHotelForm');
     const hotelName = document.getElementById('hotelName').value;
@@ -56,11 +87,9 @@ async function createHotel() {
 
     try {
         const response = await fetch(apiUrl + '/hotel/create', {
-            method: 'POST',
-            headers: {
+            method: 'POST', headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({hotelName, street, numberOfRooms}),
+            }, body: JSON.stringify({hotelName, street, numberOfRooms}),
         });
 
         const createdHotel = await response.json();
@@ -81,14 +110,10 @@ async function updateHotel() {
 
     try {
         const response = await fetch(apiUrl + '/hotel/' + updateHotelId, {
-            method: 'PUT',
-            headers: {
+            method: 'PUT', headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                hotelName: updatedHotelName,
-                street: updatedStreet,
-                numberOfRooms: updatedNumberOfRooms
+            }, body: JSON.stringify({
+                hotelName: updatedHotelName, street: updatedStreet, numberOfRooms: updatedNumberOfRooms
             }),
         });
 
@@ -121,17 +146,16 @@ async function deleteHotel() {
         console.error('Error deleting hotel:', error);
     }
 }
+
 async function createRoom() {
     const createRoomForm = document.getElementById('createRoomForm');
     const roomHotelId = document.getElementById('roomHotelId').value;
 
     try {
         const response = await fetch(`${apiUrl}/hotel/${roomHotelId}/rooms`, {
-            method: 'POST',
-            headers: {
+            method: 'POST', headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({}),
+            }, body: JSON.stringify({}),
         });
 
         if (response.status === 201) {
@@ -144,7 +168,6 @@ async function createRoom() {
         console.error('Error creating room:', error);
     }
 }
-
 
 
 fetchAllHotels();

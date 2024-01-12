@@ -9,20 +9,14 @@ async function createGuest() {
     const phoneNumber = document.getElementById('phoneNumber').value;
 
     const requestBody = {
-        userName: userName,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        phoneNumber: phoneNumber,
+        userName: userName, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber,
     };
 
     try {
         const response = await fetch(`${apiUrl}/guest/create`, {
-            method: 'POST',
-            headers: {
+            method: 'POST', headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
+            }, body: JSON.stringify(requestBody),
         });
 
         if (response.ok) {
